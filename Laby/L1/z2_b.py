@@ -1,17 +1,15 @@
 import random
 import matplotlib.pyplot as plt
 import math
-import time
 
 no_tests = 50
 u = 1000
 n_values = [2, u//2, u]
-averages = []
+histogram = {2:{}, u//2:{}, u:{}}
 
 for n in n_values:
     print(n)
     devices = [0] * n
-    rounds = []
     L = math.ceil(math.log(u,2))
     for i in range(0,no_tests):
         p = 0.5
@@ -26,11 +24,9 @@ for n in n_values:
                 p *= 0.5
             counter += 1
             no_rounds += 1
-        rounds.append(no_rounds)
         devices = [0] * n
+        histogram[n][no_rounds] = histogram[n].get(no_rounds, 0) + 1
 
-    average = sum(rounds) / len(rounds)
-    averages.append(average)
-
-plt.plot(n_values, averages)
-plt.show()
+for n in n_values:
+    plt.bar(histogram[n].keys(), histogram[n].values())
+    plt.show()
