@@ -2,8 +2,8 @@ import random
 import matplotlib.pyplot as plt
 import math
 
-no_tests = 100
-n_values = [pow(2,b) for b in range(8,20)]
+no_tests = 1000
+n_values = [pow(2,b) for b in range(8,16)]
 averages = []
 variance = []
 
@@ -22,7 +22,7 @@ for n in n_values:
 
     average = sum(rounds) / len(rounds)
     averages.append(average)
-    variance.append(sum(pow(x - average, 2) for x in averages) / len(averages))
+    variance.append(sum(pow(x - average, 2) for x in rounds) / len(rounds))
 
 
 plt.plot(n_values, averages)
