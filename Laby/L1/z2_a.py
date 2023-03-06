@@ -1,8 +1,8 @@
 import random
 import matplotlib.pyplot as plt
 
-no_tests = 100
-n = 1000
+no_tests = 10000
+n = 10000
 devices = [0] * n
 p = 1/n
 histogram = {}
@@ -16,4 +16,4 @@ for i in range(0,no_tests):
     devices = [0] * n
 
 plt.bar(histogram.keys(), histogram.values())
-plt.show()
+plt.savefig('z2_a', dpi=300)

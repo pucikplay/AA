@@ -2,7 +2,7 @@ import random
 import matplotlib.pyplot as plt
 import math
 
-no_tests = 1000
+no_tests = 10000
 n_values = [pow(2,b) for b in range(8,16)]
 averages = []
 variance = []
@@ -25,7 +25,7 @@ for n in n_values:
     variance.append(sum(pow(x - average, 2) for x in rounds) / len(rounds))
 
 
-plt.plot(n_values, averages)
-plt.plot(n_values, variance)
-plt.plot(n_values, [math.e] * len(averages))
-plt.show()
+line1 = plt.plot(n_values, averages, label = "E[X]")
+line2 = plt.plot(n_values, variance, label = "Var[X]")
+line2 = plt.plot(n_values, [math.e] * len(averages), label = "e")
+plt.savefig('z3.jpg', dpi=300)
