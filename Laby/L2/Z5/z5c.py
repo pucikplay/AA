@@ -5,13 +5,15 @@ n_vals = [n for n in range(1,10001)]
 n_vals.reverse()
 
 if __name__ == "__main__":
-    l = 86
-    r = 88
+    l = 100
+    r = 400
     while l < r:
         k = math.floor((l+r)/2)
         errors = 0
+        counter = 1
         for n in n_vals:
-            MM = [i for i in range(1,n+1)]
+            MM = [i for i in range(counter,counter+n)]
+            counter += n
             error = abs(z5b.minCount(MM, z5b.hash, k)/n - 1)
             if error >= 0.1:
                 errors += 1
@@ -23,4 +25,4 @@ if __name__ == "__main__":
             r = k - 1
     print(r)
 
-# 87 wychodzi
+# 321 wychodzi
