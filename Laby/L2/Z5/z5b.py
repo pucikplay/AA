@@ -2,7 +2,7 @@ import hashlib
 
 MAX = 2**512
 n_vals = [n for n in range(1,10001)]
-k_vals = [2,3,100,400]
+k_vals = [2,3,10,100,400]
 
 def hash(x):
     return int.from_bytes(hashlib.sha512(str(x).encode()).digest())/MAX
@@ -29,12 +29,14 @@ def minCount(MM, h, k):
 
 if __name__ == "__main__":
     with open('Laby/L2/Z5/k.csv', 'w') as f:
+        counter = 1
         for n in n_vals:
             print(n)
             for k in k_vals:
-                MM = [i for i in range(1,n+1)]
+                MM = [i for i in range(counter,counter+n)]
                 f.write(str(minCount(MM, hash, k)/n))
                 if k != 400:
                     f.write(';')
+            counter += n
             f.write('\n')
         f.close()
