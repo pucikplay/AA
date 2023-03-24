@@ -12,6 +12,8 @@ if __name__ == "__main__":
         for row in reader:
             for i,hash in enumerate(z6.hash_functions):
                 ratios[hash].append(float(row[i]))
+        csvfile.close()
+        
     for hash in z6.hash_functions:
         plt.scatter(z6.n_vals, ratios[hash], label=hash.__name__, s=1)
         plt.xlabel("n")
