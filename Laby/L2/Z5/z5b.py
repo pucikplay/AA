@@ -28,10 +28,13 @@ def minCount(MM, h, k):
         return (k-1)/M[k-1]
 
 if __name__ == "__main__":
-    for k in k_vals:
-        with open('Laby/L2/k={}.csv'.format(k), 'w') as f:
-            for n in n_vals:
-                print(k,n)
+    with open('Laby/L2/Z5/k.csv', 'w') as f:
+        for n in n_vals:
+            print(n)
+            for k in k_vals:
                 MM = [i for i in range(1,n+1)]
-                f.write('{};{}\n'.format(n, minCount(MM, hash, k)/n))
-            f.close()
+                f.write(str(minCount(MM, hash, k)/n))
+                if k != 400:
+                    f.write(';')
+            f.write('\n')
+        f.close()
