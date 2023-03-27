@@ -1,4 +1,5 @@
 import hashlib
+from random import shuffle, random
 import sys
 sys.path.insert(0, 'X:\Gabriel\Dokumenty\Studia\AA\Laby\L2\Z5')
 import z5b
@@ -36,17 +37,28 @@ def MD5_16(x):
 def MD5_8(x):
     return (int.from_bytes(hashlib.md5(str(x).encode()).digest()) % MAX8)/MAX8
 
+def BadHash_32(x):
+    if random() > 0.8:
+        bits = [1] * 20 + [0] * 12
+        shuffle(bits)
+        return (int(''.join(str(x) for x in bits), 2))/MAX32
+    else:
+        return random()
+
 hash_functions = [SHA512, SHA128, SHA32, SHA16, SHA8, MD5_128, MD5_32, MD5_16, MD5_8]
 small_functions = [SHA16, SHA8, MD5_16, MD5_8]
+bad_functions = [SHA32, BadHash_32]
+all_functions = [SHA512, SHA128, SHA32, SHA16, SHA8, MD5_128, MD5_32, MD5_16, MD5_8, BadHash_32]
+
 k = 400
 n_vals = [i for i in range(1,10001)]
 
 if __name__ == "__main__":
-    with open('Laby/L2/Z6/hash.csv', 'w') as f:
+    with open('Laby/L2/Z6/hash_bad.csv', 'w') as f:
         counter = 1
         for n in n_vals:
             print(n)
-            for hash in hash_functions:
+            for hash in bad_functions:
                 MM = [i for i in range(counter,counter+n)]
                 f.write(str(z5b.minCount(MM, hash, k)/n))
                 if hash != MD5_8:
