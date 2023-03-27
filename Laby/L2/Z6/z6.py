@@ -37,6 +37,7 @@ def MD5_8(x):
     return (int.from_bytes(hashlib.md5(str(x).encode()).digest()) % MAX8)/MAX8
 
 hash_functions = [SHA512, SHA128, SHA32, SHA16, SHA8, MD5_128, MD5_32, MD5_16, MD5_8]
+small_functions = [SHA16, SHA8, MD5_16, MD5_8]
 k = 400
 n_vals = [i for i in range(1,10001)]
 

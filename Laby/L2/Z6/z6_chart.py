@@ -16,7 +16,16 @@ if __name__ == "__main__":
         
     for hash in z6.hash_functions:
         plt.scatter(z6.n_vals, ratios[hash], label=hash.__name__, s=1)
-        plt.xlabel("n")
-        plt.ylabel("est_n/n")
+    plt.xlabel("n")
+    plt.ylabel("est_n/n")
     plt.legend()
     plt.savefig('Laby/L2/Z6/hash.png', dpi=300)
+    plt.close()
+
+    for hash in z6.small_functions:
+        plt.scatter(z6.n_vals, ratios[hash], label=hash.__name__, s=1)
+    plt.xlabel("n")
+    plt.ylabel("est_n/n")
+    plt.legend()
+    plt.savefig('Laby/L2/Z6/small_hash.png', dpi=300)
+    plt.close()
