@@ -6,7 +6,7 @@ n_vals = [n for n in range(1,10001)]
 b_vals = [b for b in range(4,17)]
 colours = ['olivedrab','peru','brown']
 names = ['Urny i kule małe', 'HyperLogLog', 'Urny i kule duże']
-hashes = ['blake']#, 'sha', 'md5']
+hashes = ['blake', 'sha', 'md5']
 
 if __name__ == "__main__":
     for hash in hashes:
