@@ -83,16 +83,13 @@ def hyperLogLog(MM,b,h):
     return -(2**32) * math.log2(1 - E/2**32)
 
 if __name__ == "__main__":
-    # with open('Laby/L3/z8.csv', 'w') as f:
-    #     counter = 1
-    #     for n in n_vals:
-    #         print(n)
-    #         for k in k_vals:
-    #             MM = [i for i in range(counter,counter+n)]
-    #             f.write(str(minCount(MM, hash, k)/n))
-    #             if k != 400:
-    #                 f.write(';')
-    #         counter += n
-    #         f.write('\n')
-    #     f.close()
-    print(hyperLogLog([i for i in range(10000)], 5, h_2))
+    with open('Laby/L3/z8.csv', 'w') as f:
+        counter = 1
+        for n in n_vals:
+            print(n)
+            MM = [i for i in range(counter,counter+n)]
+            f.write(str(hyperLogLog(MM,5,h_2)/n))
+            counter += n
+            f.write('\n')
+        f.close()
+    # print(hyperLogLog([i for i in range(10000)], 5, h_2))
