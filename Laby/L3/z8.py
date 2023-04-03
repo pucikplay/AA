@@ -2,9 +2,13 @@ import hashlib
 import math
 
 n_vals = [n for n in range(1,10001)]
+MAX32 = 2**32
 
-def h(x):
+def h_1(x):
     return "{0:032b}".format(int(hashlib.blake2s(str(x).encode(), digest_size=4).hexdigest(), base=16))
+
+def h_2(x):
+    return "{0:032b}".format(int(hashlib.sha256(str(x).encode()).hexdigest(), base=16) % MAX32)
 
 def bblSort(M, k):
     x = M[k-1]
@@ -48,7 +52,7 @@ def Void(M):
             v += 1
     return v
 
-def hyperLogLog(MM,b):
+def hyperLogLog(MM,b,h):
     m = 2**b
     M = [0] * m
 
@@ -62,17 +66,21 @@ def hyperLogLog(MM,b):
     sum = 0
     for y in M:
         sum += 2**(-y)
+
     E = alpha(m) * m**2 * (1/sum)
 
     if E <= (5/2) * m:
         if Void(M):
-            return m * math.log(math.e, (m/v))
+            print(1)
+            return m * math.log2(m/v)
         else:
+            print(2)
             return E
     if E <= (1/30) * 2**32:
+        print(3)
         return E
-    
-    return -(2**32) * math.log(math.e, (1 - E/2**32))
+    print(4)
+    return -(2**32) * math.log2(1 - E/2**32)
 
 if __name__ == "__main__":
     # with open('Laby/L3/z8.csv', 'w') as f:
@@ -87,4 +95,4 @@ if __name__ == "__main__":
     #         counter += n
     #         f.write('\n')
     #     f.close()
-    print(hyperLogLog([1,2,3,4,5,6,7,8,9,10], 4))
+    print(hyperLogLog([i for i in range(10000)], 5, h_2))
