@@ -2,6 +2,8 @@ import hashlib
 import math
 
 n_vals = [n for n in range(1,10001)]
+b_vals = [b for b in range(4,17)]
+hashes = ['blake', 'sha', 'md5']
 MAX32 = 2**32
 
 def h_1(x):
@@ -10,25 +12,10 @@ def h_1(x):
 def h_2(x):
     return "{0:032b}".format(int(hashlib.sha256(str(x).encode()).hexdigest(), base=16) % MAX32)
 
-def bblSort(M, k):
-    x = M[k-1]
-    i = k-2
-    while M[i] > x:
-        i -= 1
-    M[i+2:k] = M[i+1:k-1]
-    M[i+1] = x
+def h_3(x):
+    return "{0:032b}".format(int(hashlib.md5(str(x).encode()).hexdigest(), base=16) % MAX32)
 
-def minCount(MM, h, k):
-    M = [1] * k
-    for x in MM:
-        hash = h(x)
-        if hash < M[k-1] and hash not in M:
-            M[k-1] = hash
-            bblSort(M, k)
-    if M[k-1] == 1:
-        return sum(1 for a in M if a != 1)
-    else:
-        return (k-1)/M[k-1]
+hash_dict = {'blake' : h_1, 'sha' : h_2, 'md5' : h_3}
 
 def alpha(m):
     if m == 16:
@@ -38,17 +25,18 @@ def alpha(m):
     if m == 64:
         return 0.709
     if m >= 128:
-        return 0.7213/(1 + 1.079/m)
+        return 0.7213/(1 + (1.079/m))
     
 def rho(w):
     for i,b in enumerate(w):
         if b == '1':
             return i + 1
+    return len(w) + 1
         
 def Void(M):
     v = 0
-    for m in M:
-        if m == 0:
+    for y in M:
+        if y == 0:
             v += 1
     return v
 
@@ -70,26 +58,27 @@ def hyperLogLog(MM,b,h):
     E = alpha(m) * m**2 * (1/sum)
 
     if E <= (5/2) * m:
-        if Void(M):
-            print(1)
-            return m * math.log2(m/v)
+        V = Void(M)
+        if V != 0:
+            return 1, m * math.log(m/V)
         else:
-            print(2)
-            return E
-    if E <= (1/30) * 2**32:
-        print(3)
-        return E
-    print(4)
-    return -(2**32) * math.log2(1 - E/2**32)
+            return 1, E
+    if E <= 2**32 / 30:
+        return 2, E
+    return 3, -(2**32) * math.log(1 - E/2**32)
 
 if __name__ == "__main__":
-    with open('Laby/L3/z8.csv', 'w') as f:
-        counter = 1
-        for n in n_vals:
-            print(n)
-            MM = [i for i in range(counter,counter+n)]
-            f.write(str(hyperLogLog(MM,5,h_2)/n))
-            counter += n
-            f.write('\n')
-        f.close()
-    # print(hyperLogLog([i for i in range(10000)], 5, h_2))
+    for hash in ['md5']:
+        with open('Laby/L3/z8_{}.csv'.format(hash), 'w') as f:
+            counter = 1
+            for n in n_vals:
+                print(n)
+                for b in b_vals:
+                    MM = [i for i in range(counter,counter+n)]
+                    res = hyperLogLog(MM,b,hash_dict[hash])
+                    f.write("{};{}".format(str(res[0]), str(res[1]/n)))
+                    if b != 16:
+                        f.write(';')
+                counter += n
+                f.write('\n')
+            f.close()
