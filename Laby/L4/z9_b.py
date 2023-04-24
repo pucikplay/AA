@@ -15,21 +15,21 @@ no_tests = 10000
 # liczbę bloków na dogonienie odpowiadającą parametrowi cutoff.
 # Jeśli nie uda się mu dogonić to atak kończy się niepowodzeniem
 def dsa(n, q, cutoff):
-    legit_branch = 0 # długość gałęzi
-    adv_branch = 0
+    legit_branch = 0 # długość gałęzi uczciwej
+    adv_branch = 0 # długość gałęzi adwersarza
 
     while True:
-        if rnd.random() <= q:
+        if rnd.random() <= q: # przedłuż gałęzie w zależności od mocy obliczeniowej
             adv_branch += 1
         else:
             legit_branch += 1
 
-        if legit_branch < n:
+        if legit_branch < n: # dopóki gałąź uczciwa < n licz dalej
             continue
         
-        if adv_branch >= legit_branch:
+        if adv_branch >= legit_branch: # jeśli gałąź adwersarza nie krótsza to sukces
             return True
-        elif legit_branch >= n + cutoff:
+        elif legit_branch >= n + cutoff: # jeśli nie udało się dogonić to porażka
             return False
 
 # Metoda Monte Carlo, wykonujemy symuulację wielokrotnie i uśredniamy wynik
