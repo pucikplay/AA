@@ -1,6 +1,6 @@
 using Dates
 
-global const RING_SIZE = 5
+global const RING_SIZE = 8
 
 function isIllegal(config)
     count = 0
@@ -44,13 +44,14 @@ function getAllConfigs()
     set = Set{Array{UInt8,1}}()
     push!(set, zeros(RING_SIZE))
     configs = getConfigs(1, set)
-    println("getAllConfigs time elapsed: ", now() - timer)
+    println("getAllConfigs time elapsed = ", now() - timer)
     return configs
 end
 
 function maxSteps()
+    timer = now()
     all_configs = getAllConfigs()
-    println("all_configs.len(): ", length(all_configs))
+    println("Number of configs = ", length(all_configs))
 
     configs = Set{Array{UInt8,1}}(
         filter(config -> isIllegal(config), all_configs)
@@ -84,8 +85,8 @@ function maxSteps()
         steps += 1
         println("finished step ", steps)
     end
-
+    println("Total time elapsed = ", now() - timer)
     return steps
 end
 
-println("max steps = ", maxSteps())
+maxSteps()
