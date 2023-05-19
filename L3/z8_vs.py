@@ -47,5 +47,5 @@ if __name__ == "__main__":
     plt.legend()
     plt.xlabel("n")
     plt.ylabel("n_est/n")
-    plt.savefig("Laby/L3/z8_vs.png", dpi=300)
+    plt.savefig("L3/charts/z8_vs.png", dpi=300)
     plt.close()

@@ -7,13 +7,13 @@ n = [i for i in range(1,10001)]
 ratios = {x: [] for x in z6.all_functions}
 
 if __name__ == "__main__":
-    with open('Laby/L2/Z6/hash.csv') as csvfile:
+    with open('L2/Z6/hash.csv') as csvfile:
         reader = csv.reader(csvfile, delimiter=';')
         for row in reader:
             for i,hash in enumerate(z6.hash_functions):
                 ratios[hash].append(float(row[i]))
         csvfile.close()
-    with open('Laby/L2/Z6/hash_bad.csv') as csvfile:
+    with open('L2/Z6/hash_bad.csv') as csvfile:
         reader = csv.reader(csvfile, delimiter=';')
         for row in reader:
              for i,hash in enumerate(z6.bad_functions):
@@ -26,7 +26,7 @@ if __name__ == "__main__":
     plt.xlabel("n")
     plt.ylabel("est_n/n")
     plt.legend()
-    plt.savefig('Laby/L2/Z6/hash.png', dpi=300)
+    plt.savefig('L2/Z6/hash.png', dpi=300)
     plt.close()
 
     for hash in z6.small_functions:
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     plt.xlabel("n")
     plt.ylabel("est_n/n")
     plt.legend()
-    plt.savefig('Laby/L2/Z6/small_hash.png', dpi=300)
+    plt.savefig('L2/Z6/small_hash.png', dpi=300)
     plt.close()
 
     for hash in z6.bad_functions:
@@ -42,5 +42,5 @@ if __name__ == "__main__":
     plt.xlabel("n")
     plt.ylabel("est_n/n")
     plt.legend()
-    plt.savefig('Laby/L2/Z6/bad_hash.png', dpi=300)
+    plt.savefig('L2/Z6/bad_hash.png', dpi=300)
     plt.close()

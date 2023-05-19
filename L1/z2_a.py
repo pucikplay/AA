@@ -16,4 +16,4 @@ for i in range(0,no_tests):
     devices = [0] * n
 
 plt.bar(histogram.keys(), histogram.values())
-plt.savefig('z2_a', dpi=300)
+plt.savefig('charts/z2_a', dpi=300)

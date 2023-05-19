@@ -28,7 +28,7 @@ def minCount(MM, h, k):
         return (k-1)/M[k-1]
 
 if __name__ == "__main__":
-    with open('Laby/L2/Z5/k.csv', 'w') as f:
+    with open('L2/Z5/k.csv', 'w') as f:
         counter = 1
         for n in n_vals:
             print(n)

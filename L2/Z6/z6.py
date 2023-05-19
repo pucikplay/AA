@@ -54,7 +54,7 @@ k = 400
 n_vals = [i for i in range(1,10001)]
 
 if __name__ == "__main__":
-    with open('Laby/L2/Z6/hash_bad.csv', 'w') as f:
+    with open('L2/Z6/hash_bad.csv', 'w') as f:
         counter = 1
         for n in n_vals:
             print(n)

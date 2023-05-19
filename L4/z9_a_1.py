@@ -40,5 +40,5 @@ if __name__ == "__main__":
         plt.ylabel('p_nq')
         plt.title('n={}'.format(n))
         plt.legend()
-        plt.savefig('Laby/L4/charts/n={}.png'.format(n), dpi=300)
+        plt.savefig('L4/charts/n={}.png'.format(n), dpi=300)
         plt.close()

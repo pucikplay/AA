@@ -58,7 +58,7 @@ if __name__ == "__main__":
         plt.ylabel('p_nq')
         plt.title('n={}'.format(n))
         plt.legend()
-        plt.savefig('Laby/L4/charts/n={}_sim.png'.format(n), dpi=300)
+        plt.savefig('L4/charts/n={}_sim.png'.format(n), dpi=300)
         plt.close()
 
     p_cutoff = {0: [], 10: [], 50: [], 100: []}
@@ -75,5 +75,5 @@ if __name__ == "__main__":
     plt.ylabel('p_nq')
     plt.title('n={}'.format(n))
     plt.legend()
-    plt.savefig('Laby/L4/charts/cutoff.png'.format(n), dpi=300)
+    plt.savefig('L4/charts/cutoff.png'.format(n), dpi=300)
     plt.close()

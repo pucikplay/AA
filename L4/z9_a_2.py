@@ -24,6 +24,6 @@ if __name__ == "__main__":
         plt.ylabel('n')
         plt.title('p={}'.format(p))
         plt.legend()
-        plt.savefig('Laby/L4/charts/p={}.png'.format(p), dpi=300)
+        plt.savefig('L4/charts/p={}.png'.format(p), dpi=300)
         plt.close()
         

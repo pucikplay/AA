@@ -9,8 +9,8 @@ end
 
 function maxIndSet(graph)
     n = length(graph)
-    state_prev = zeros(n)
-    state_curr = zeros(n)
+    state_prev = zeros(Bool, n)
+    state_curr = zeros(Bool, n)
     state_prev[1] = 1
     
     while state_prev != state_curr

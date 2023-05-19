@@ -69,7 +69,7 @@ def hyperLogLog(MM,b,h):
 
 if __name__ == "__main__":
     for hash in ['md5']:
-        with open('Laby/L3/z8_{}.csv'.format(hash), 'w') as f:
+        with open('L3/z8_{}.csv'.format(hash), 'w') as f:
             counter = 1
             for n in n_vals:
                 print(n)

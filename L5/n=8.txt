@@ -1,4 +1,4 @@
-pucik@DESKTOP-IMMNE48:/mnt/x/Gabriel/Dokumenty/Studia/AA/Laby/L5$ julia z10.jl
+pucik@DESKTOP-IMMNE48:/mnt/x/Gabriel/Dokumenty/Studia/AA/L5$ julia z10.jl
 getAllConfigs time elapsed = 69642 milliseconds
 Number of configs = 43046721
 finished step 1

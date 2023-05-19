@@ -29,4 +29,4 @@ for n in n_values:
 
 for n in n_values:
     plt.bar(histogram[n].keys(), histogram[n].values())
-    plt.savefig('z2_b_{0}'.format(n), dpi=300)
+    plt.savefig('charts/z2_b_{0}'.format(n), dpi=300)

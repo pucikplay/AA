@@ -28,4 +28,4 @@ for n in n_values:
 line1 = plt.plot(n_values, averages, label = "E[X]")
 line2 = plt.plot(n_values, variance, label = "Var[X]")
 line2 = plt.plot(n_values, [math.e] * len(averages), label = "e")
-plt.savefig('z3.jpg', dpi=300)
+plt.savefig('charts/z3.jpg', dpi=300)

@@ -11,7 +11,7 @@ hashes = ['blake', 'sha', 'md5']
 if __name__ == "__main__":
     for hash in hashes:
         ratios = {b: [] for b in b_vals}
-        with open('Laby/L3/z8_{}.csv'.format(hash)) as csvfile:
+        with open('L3/z8_{}.csv'.format(hash)) as csvfile:
             reader = csv.reader(csvfile, delimiter=';')
             for row in reader:
                 for i,b in enumerate(b_vals):
@@ -29,5 +29,5 @@ if __name__ == "__main__":
             plt.legend()
             plt.xlabel("n")
             plt.ylabel("n_est/n")
-            plt.savefig("Laby/L3/charts/z8_{}_b={}.png".format(hash,b), dpi=300)
+            plt.savefig("L3/charts/z8_{}_b={}.png".format(hash,b), dpi=300)
             plt.close()

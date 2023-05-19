@@ -33,7 +33,7 @@ def find_delta(alpha):
     return delta
 
 if __name__ == "__main__":
-    with open('Laby/L2/Z5/k.csv') as csvfile:
+    with open('L2/Z5/k.csv') as csvfile:
         reader = csv.reader(csvfile, delimiter=';')
         for row in reader:
             ratios.append(float(row[4]))
@@ -52,7 +52,7 @@ if __name__ == "__main__":
         plt.plot(n, [1 - delta_exp[i]] * 10000, color=colours[i])
     plt.xlabel("n")
     plt.ylabel("est_n/n")
-    plt.savefig("Laby/L2/Z7/delta.png", dpi=300)
+    plt.savefig("L2/Z7/delta.png", dpi=300)
     plt.close()
 
     for i,a in enumerate(alpha):
@@ -64,5 +64,5 @@ if __name__ == "__main__":
         plt.ylabel("est_n/n")
         plt.title("alpha={}".format(a))
         plt.legend()
-        plt.savefig("Laby/L2/Z7/delta_{}.png".format(a), dpi=300)
+        plt.savefig("L2/Z7/delta_{}.png".format(a), dpi=300)
         plt.close()
