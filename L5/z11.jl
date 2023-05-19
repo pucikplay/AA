@@ -1,7 +1,9 @@
 function nodeAction(i, s, graph)
+    # node i becomes independent
     if s[i] == 0 && all(j -> s[j] == 0, graph[i])
         s[i] = 1
     end
+    # node i becomes dominated
     if s[i] == 1 && 1 in graph[i]
         s[i] = 0
     end
@@ -13,6 +15,7 @@ function maxIndSet(graph)
     state_curr = zeros(Bool, n)
     state_prev[1] = 1
     
+    # while state changes
     while state_prev != state_curr
         state_prev = state_curr
         for i in 1:n
