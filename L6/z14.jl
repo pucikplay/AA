@@ -1,9 +1,9 @@
 using LinearAlgebra
 
 function P_matrix(graph, n)
-    p_matrix = Array{Float64,2}(undef, n, n)
+    p_matrix = zeros(Float64, n, n)
     for i in 1:n
-        row_sum = sum(graph[i])
+        row_sum = sum(graph[i,:])
         if row_sum == 0
             for j in 1:n
                 p_matrix[i,j] = 1/n
@@ -29,13 +29,13 @@ function Stationary_dist(graph, a)
     n = length(graph[1,:])
     m_matrix = M_matrix(graph, a)
 
-    return transpose(ones(Float64, n) / n) * (m_matrix ^ (2 ^ 12))
+    return transpose(ones(Float64, n) / n) * (m_matrix ^ 99999999)
 end
 
 function Convergence(graph, a)
     n = length(graph[1,:])
     m_matrix = M_matrix(graph, a)
-    pi_vector = transpose(ones(Float64, n) / n) * (m_matrix ^ (2 ^ 12))
+    pi_vector = transpose(ones(Float64, n) / n) * (m_matrix ^ 99999999)
     pi_k = ones(Float64, n) / n
     m_t = m_matrix
     data = zeros(Float64, 25)

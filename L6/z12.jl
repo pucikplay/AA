@@ -1,7 +1,7 @@
 function P_matrix(graph, n)
-    p_matrix = Array{Float64,2}(undef, n, n)
+    p_matrix = zeros(Float64, n, n)
     for i in 1:n
-        row_sum = sum(graph[i])
+        row_sum = sum(graph[i,:])
         if row_sum == 0
             for j in 1:n
                 p_matrix[i,j] = 1/n
@@ -12,6 +12,8 @@ function P_matrix(graph, n)
             end
         end
     end
+    display(p_matrix)
+    println()
     return p_matrix
 end
 
@@ -27,7 +29,7 @@ function Stationary_dist(graph, a)
     n = length(graph[1,:])
     m_matrix = M_matrix(graph, a)
 
-    return transpose(ones(Float64, n) / n) * (m_matrix ^ (2 ^ 12))
+    return transpose(ones(Float64, n) / n) * (m_matrix ^ 99999999)
 end
 
 alphas = [0, 0.15, 0.5, 1]

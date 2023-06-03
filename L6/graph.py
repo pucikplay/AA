@@ -12,7 +12,7 @@ if __name__ == "__main__":
                 data[a].append(float(item))
 
     for a in alphas:
-        plt.plot(range(1,7), data[a][:6], label="alpha = {}".format(a))
+        plt.plot(range(1,26), data[a][:25], label="alpha = {}".format(a))
     plt.legend()
     plt.title("Norm of difference of state from stationary state")
     plt.xlabel("Step")

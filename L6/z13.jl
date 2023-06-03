@@ -1,21 +1,19 @@
 function Stationary_dist(p_matrix)
     n = length(p_matrix[1,:])
-    return transpose(ones(Float64, n) / n) * (p_matrix ^ (2 ^ 12))
+    return transpose(ones(Float64, n) / n) * (p_matrix ^ 99999999)
 end
 
 function Approx(p_matrix, epsilon)
     n = length(p_matrix[1,:])
-    pi_vector = transpose(ones(Float64, n) / n) * (p_matrix ^ (2 ^ 12))
-    pi_approx = ones(Float64, n) / n
+    pi_vector = transpose(ones(Float64, n) / n) * (p_matrix ^ 99999999)
+    pi_approx = [0 0.3 0.1 0.6]
     p_t = p_matrix
-    counter = 0
-    while maximum([abs(pi_approx[i] - pi_vector[i]) for i in 1:n]) > epsilon
-        counter += 1
+    t = 1
+    while maximum([abs(p_t[1,i] - pi_vector[i]) for i in 1:n]) > epsilon
+        t += 1
         p_t *= p_matrix
-        pi_approx = transpose(ones(Float64, n) / n) * p_t
-        println(round.(pi_approx; digits=4))
     end
-    return counter
+    return t
 end
 
 p_matrix = [0.0 0.3 0.1 0.6;
@@ -40,6 +38,6 @@ println(sum((p_matrix ^ 128)[:,4])/4)
 
 println("\nLiczba kroków:")
 for epsilon in epsilons
-    println("\nepsilon = $epsilon")
+    print("epsilon = $epsilon: ")
     println(Approx(p_matrix, epsilon))
 end
