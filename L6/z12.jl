@@ -12,8 +12,6 @@ function P_matrix(graph, n)
             end
         end
     end
-    display(p_matrix)
-    println()
     return p_matrix
 end
 
