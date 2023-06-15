@@ -1,0 +1,68 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+\usepackage[letterpaper,top=1cm,bottom=1cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{polski}
+
+\title{AA Laboratorium 7}
+\author{Gabriel Budziński}
+\date{June 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{Zadanie 15}
+
+\subsection{Analiza teoretyczna}
+
+Dla argumentu $n$ linia 6 wywoła się $n$ razy w pierwszym wywołaniu, a oprócz tego w wywołaniach rekurencyjnych, przez co dostajemy:
+\begin{equation}
+    \begin{cases}
+        f_0 = 0\\
+        f_n = n + \sum\limits_{i=0}^{n-1}{f_i}
+    \end{cases}
+\end{equation}
+
+Każdy składnik dolnego równania wymnażamy przez $z^n$ i nakładamy sumę:
+
+\[\sum\limits_{n \geq 0}{f_n z^n} = \sum\limits_{n \geq 0}{nz^n} + \sum\limits_{n \geq 0}{\left(\sum\limits_{i=0}^{n-1}{f_i}\right)z^n}\]
+
+Teraz wyliczamy każdy ze składników:
+
+\[\sum\limits_{n \geq 0}{f_n z^n} = F(z)\]
+
+Dla drugiego korzystamy z $\textbf{Right Shift}$ oraz $\textbf{Index Multiply}$:
+
+\[\sum\limits_{n \geq 0}{nz^n} \stackrel{RS}{=} z\sum\limits_{n \geq 0}{nz^{n-1}} \stackrel{IM}{=} z\frac{d}{dz}\left(\sum\limits_{n \geq 0}{z^n}\right) = z\frac{d}{dz}\left(\frac{1}{1-z}\right) = \frac{z}{{(1-z)}^2}\]
+
+Dla trzeciego korzystamy z $\textbf{Right Shift}$ oraz $\textbf{Partial Sum}$:
+
+\[\sum\limits_{n \geq 0}{\left(\sum\limits_{i=0}^{n-1}{f_i}\right)z^n} = 0 + \sum\limits_{n \geq 1}{\left(\sum\limits_{i=0}^{n-1}{f_i}\right)z^n} \stackrel{RS}{=} z\sum\limits_{n \geq 1}{\left(\sum\limits_{i=0}^{n-1}{f_i}\right)z^{n-1}} = z\sum\limits_{n \geq 0}{\left(\sum\limits_{i=0}^{n}{f_i}\right)z^n} \stackrel{PS}{=} z\frac{1}{1-z}F(z)\]
+
+Z tego otrzymujemy
+
+\[F(z) = \frac{z}{{(1-z)}^2} + \frac{z}{1-z}F(z)\]
+
+Czyli
+
+\[F(z) = \frac{z}{{(1-z)}^2} \cdot \frac{1-z}{1-2z} = \frac{z}{(1-2z)(1-z)}\]
+
+Teraz korzystając z $\textbf{Convolution}$ oraz $\textbf{Right Shift}$
+
+\[F(z) = z\sum\limits_{n \geq 0}{z^n} \cdot \sum\limits_{n \geq 0}{{(2z)}^n} \stackrel{C}{=} z\sum\limits_{n \geq 0}\left({\sum\limits_{k=0}^{n}{2^k1_{n-k}}}\right)z^n = z\sum\limits_{n \geq 0}{\frac{1-2^{n+1}}{1-2}z^n} = \sum\limits_{n \geq 0}{\left(2^{n+1} - 1\right)z^{n+1}} = f_0z^0 + \sum\limits_{n \geq 1}{\left(2^n - 1\right)z^n}\]
+
+Otrzymujemy $f_n = 2^n - 1$.
+
+\subsection{Wyniki eksperymentalne}
+
+Wyniki sprawdzono dla $n \in \{0,\dots,32\}$ i były jednakowe z teoretycznymi.
+
+\section{Zadanie 16}
+
+\subsection{Analiza teoretyczna}
+
+\subsection{Wyniki eksperymentalne}
+
+\end{document}
